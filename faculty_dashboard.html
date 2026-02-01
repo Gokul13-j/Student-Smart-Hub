@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% block title %}Faculty Dashboard - Student Smart Hub{% endblock %}
+{% block content %}
+<nav class="nav-portal">
+  <a href="{{ url_for('faculty_dashboard') }}">Faculty Smart Hub</a>
+  <div class="nav-links flex gap-2 items-center" style="margin-left: auto;">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <a href="{{ url_for('faculty_logout') }}">Logout</a>
+  </div>
+</nav>
+
+<div class="portal-layout">
+  <aside class="sidebar glass-card">
+    <div class="sidebar-title">🧑‍🏫 Faculty</div>
+    <nav class="sidebar-nav">
+      <a href="#" data-view="dashboard" class="active">🏠 Dashboard</a>
+      <a href="#" data-view="students">👨‍🎓 Student Management</a>
+      <a href="#" data-view="assignments">📝 Assignments</a>
+      <a href="#" data-view="attendance">🧾 Attendance</a>
+      <a href="#" data-view="exams">📊 Exams & Analytics</a>
+      <a href="#" data-view="communication">📢 Communication</a>
+      <a href="#" data-view="ai">🤖 AI Teaching Assistant</a>
+      <a href="#" data-view="settings">⚙️ Settings</a>
+    </nav>
+  </aside>
+
+  <main class="portal-main">
+    <!-- Faculty Dashboard -->
+    <section id="view-dashboard" class="view-panel active">
+      <h2 class="page-title text-gradient">Faculty Dashboard</h2>
+      <div class="dashboard-grid">
+        <div class="neo-card stat-card">
+          <span class="stat-icon">📚</span>
+          <h3>Classes Handled</h3>
+          <p class="stat-value">4</p>
+        </div>
+        <div class="neo-card stat-card">
+          <span class="stat-icon">📖</span>
+          <h3>Subjects</h3>
+          <p class="stat-value">DBMS, DSA</p>
+        </div>
+        <div class="neo-card stat-card">
+          <span class="stat-icon">🕐</span>
+          <h3>Today's Schedule</h3>
+          <p class="stat-value">3 classes</p>
+          <p class="stat-detail">9AM, 10AM, 11AM</p>
+        </div>
+        <div class="neo-card stat-card">
+          <span class="stat-icon">📋</span>
+          <h3>Pending Reviews</h3>
+          <p class="stat-value">12</p>
+          <p class="stat-detail">Assignments</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Management -->
+    <section id="view-students" class="view-panel">
+      <h2 class="page-title text-gradient">Student Management</h2>
+      <div class="input-group mb-2" style="max-width: 320px;">
+        <label>Search by Roll Number</label>
+        <input type="text" placeholder="e.g. 2024001">
+      </div>
+      <div class="glass-card">
+        <h4 class="mb-2">Class-wise Students</h4>
+        <table class="timetable-table">
+          <thead>
+            <tr><th>Roll No</th><th>Name</th><th>Attendance %</th><th>Performance</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2024001</td><td>Alex Student</td><td>87%</td><td>Good</td></tr>
+            <tr><td>2024002</td><td>Sam Wilson</td><td>92%</td><td>Excellent</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Assignment Management -->
+    <section id="view-assignments" class="view-panel">
+      <h2 class="page-title text-gradient">Assignment Management</h2>
+      <div class="glass-card mb-2" style="padding: 20px;">
+        <h4 class="mb-2">Create Assignment</h4>
+        <div class="input-group"><label>Subject</label><input type="text" placeholder="e.g. DBMS"></div>
+        <div class="input-group"><label>Due Date</label><input type="date"></div>
+        <div class="input-group"><label>Upload Questions</label><input type="file" accept=".pdf,.doc,.docx"></div>
+        <button class="btn-primary mt-1">Create</button>
+      </div>
+      <div class="glass-card">
+        <h4>Submissions</h4>
+        <ul class="notif-list">
+          <li>DBMS Normalization — 15 submitted · Add marks & remarks</li>
+          <li>DSA Trees — 12 submitted</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Attendance -->
+    <section id="view-attendance" class="view-panel">
+      <h2 class="page-title text-gradient">Attendance Management</h2>
+      <div class="glass-card">
+        <h4>Daily Attendance</h4>
+        <p class="text-secondary mb-2">Auto percentage calculation</p>
+        <table class="timetable-table">
+          <thead>
+            <tr><th>Roll No</th><th>Name</th><th>Present</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2024001</td><td>Alex</td><td><input type="checkbox" checked></td></tr>
+            <tr><td>2024002</td><td>Sam</td><td><input type="checkbox" checked></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Exams & Analytics -->
+    <section id="view-exams" class="view-panel">
+      <h2 class="page-title text-gradient">Exams & Analytics</h2>
+      <div class="glass-card mb-2">
+        <h4>Upload Marks</h4>
+        <input type="file" accept=".csv,.xlsx"> <button class="btn-primary">Upload</button>
+      </div>
+      <div class="glass-card">
+        <h4>Class Performance</h4>
+        <p>GPA auto calculation · Weak student identification</p>
+        <div class="chart-placeholder">📈 Class performance chart</div>
+      </div>
+    </section>
+
+    <!-- Communication -->
+    <section id="view-communication" class="view-panel">
+      <h2 class="page-title text-gradient">Communication</h2>
+      <div class="card-list">
+        <div class="glass-card">
+          <h4>Announcements</h4>
+          <textarea placeholder="Post announcement" rows="3" style="width:100%; margin-top:8px; padding:12px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: var(--bg-glass); color: var(--text-primary);"></textarea>
+          <button class="btn-primary mt-1">Post</button>
+        </div>
+        <div class="glass-card">
+          <h4>Doubt handling chat</h4>
+          <p class="text-secondary">Student queries — Reply here</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Teaching Assistant -->
+    <section id="view-ai" class="view-panel">
+      <h2 class="page-title text-gradient">AI Teaching Assistant</h2>
+      <div class="glass-card chat-container">
+        <div id="faculty-ai-messages" class="chat-messages">
+          <div class="chat-msg bot">Hi! I'm your teaching assistant. I can help with auto doubt replies, quiz generation, and resource suggestions.</div>
+        </div>
+        <form id="faculty-ai-form" class="chat-form">
+          <input type="text" id="faculty-ai-input" placeholder="e.g. Generate a quiz on DBMS normalization" autocomplete="off">
+          <button type="submit" class="btn-primary">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section id="view-settings" class="view-panel">
+      <h2 class="page-title text-gradient">Settings</h2>
+      <div class="glass-card">
+        <p><strong>Profile</strong> — Faculty profile</p>
+        <p><strong>Notifications</strong> — Email & in-app</p>
+        <p><strong>Theme</strong> — <button class="theme-toggle">Dark / Light</button></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+.portal-layout { display: flex; min-height: calc(100vh - 56px); }
+.sidebar { width: 240px; min-width: 240px; padding: 20px; border-radius: 0; border-left: none; border-top: none; }
+.sidebar-title { font-weight: 700; margin-bottom: 16px; }
+.sidebar-nav a { display: block; padding: 10px 12px; margin-bottom: 4px; border-radius: var(--radius-sm); color: var(--text-secondary); text-decoration: none; transition: all var(--transition); }
+.sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+.portal-main { flex: 1; padding: 24px; overflow-y: auto; }
+.view-panel { display: none; }
+.view-panel.active { display: block; animation: fadeIn 0.3s ease; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.stat-card { padding: 24px; text-align: center; }
+.stat-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+.stat-value { font-size: 1.25rem; font-weight: 700; color: var(--accent-teal); }
+.stat-detail, .text-secondary { color: var(--text-secondary); font-size: 0.9rem; }
+.timetable-table { width: 100%; border-collapse: collapse; }
+.timetable-table th, .timetable-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-glass); }
+.notif-list { list-style: none; }
+.notif-list li { padding: 8px 0; border-bottom: 1px solid var(--border-glass); }
+.card-list { display: flex; flex-direction: column; gap: 12px; }
+.chat-container { padding: 0; display: flex; flex-direction: column; max-height: 500px; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 20px; min-height: 300px; }
+.chat-msg { padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 12px; max-width: 85%; }
+.chat-msg.bot { background: var(--bg-glass); align-self: flex-start; }
+.chat-msg.user { background: var(--gradient-main); color: white; align-self: flex-end; margin-left: auto; }
+.chat-form { display: flex; gap: 12px; padding: 16px; border-top: 1px solid var(--border-glass); }
+.chat-form input { flex: 1; padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: var(--bg-glass); color: var(--text-primary); }
+.chart-placeholder { padding: 40px; text-align: center; color: var(--text-secondary); background: var(--bg-glass); border-radius: var(--radius-sm); margin-top: 12px; }
+@media (max-width: 768px) { .portal-layout { flex-direction: column; } .sidebar { width: 100%; } .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; } }
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>
+(function() {
+  var form = document.getElementById('faculty-ai-form');
+  var input = document.getElementById('faculty-ai-input');
+  var messages = document.getElementById('faculty-ai-messages');
+  if (!form || !input || !messages) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    var userDiv = document.createElement('div');
+    userDiv.className = 'chat-msg user';
+    userDiv.textContent = text;
+    messages.appendChild(userDiv);
+    messages.scrollTop = messages.scrollHeight;
+    var botDiv = document.createElement('div');
+    botDiv.className = 'chat-msg bot';
+    botDiv.textContent = 'Thinking...';
+    messages.appendChild(botDiv);
+    messages.scrollTop = messages.scrollHeight;
+    try {
+      var r = await fetch('/api/ai/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, role: 'faculty' }) });
+      var j = await r.json();
+      botDiv.textContent = j.reply || 'No response.';
+    } catch (err) {
+      botDiv.textContent = 'Network error. Try again.';
+    }
+    messages.scrollTop = messages.scrollHeight;
+  });
+})();
+</script>
+{% endblock %}

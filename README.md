@@ -1,69 +1,49 @@
-# Student Smart Hub 
+# Student Smart Hub
 
-## Problem Statement
-Students often miss assignments, exams, and important updates because
-academic information is scattered across WhatsApp groups, emails,
-and notice boards.
+**One platform. Smart academics.**
 
-Student Smart Hub solves this by providing a centralized,
-AI-powered academic dashboard.
+A fully animated, modern, responsive educational web platform for students and faculty — glassmorphism + neumorphism, gradient accents (Blue → Purple → Teal), dark/light mode, and AI assistant (OpenAI).
 
+## Quick Start
 
-## Architecture
-![Architecture](architecture/architecture.png)
+```bash
+cd student-smart-hub
+python -m venv venv
+venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+```
 
-User → Frontend (HTML/CSS/JS)  
-→ Flask Backend  
-→ OpenAI API
+Create a `.env` file (copy from `.env.example`):
 
+- `OPENAI_API_KEY` — Your OpenAI API key for AI assistant (optional; works in demo mode without it)
+
+Run:
+
+```bash
+python app.py
+```
+
+Open **http://127.0.0.1:5000**
+
+## Demo Logins
+
+- **Student:** `student@hub.com` or `2024001` — password: `student123`
+- **Faculty:** `faculty@hub.com` or `F001` — password: `faculty123`
 
 ## Tech Stack
-- Frontend: HTML, CSS, JavaScript
-- Backend: Python, Flask
-- AI: OpenAI API
-- Environment: python-dotenv
 
-## AI Tools Used
-- OpenAI API
-- ChatGPT for debugging
+- **Backend:** Python, Flask
+- **Frontend:** HTML, CSS, JavaScript
+- **AI:** OpenAI API (optional)
 
-## Prompt Strategy Summary
-We used structured prompt templates to ensure consistent and relevant
-AI responses. Prompts were designed with clear instructions and
-context-aware inputs.
+## Features
 
-## Setup Instructions (Build Reproducibility)
+- Landing page with role selection (Student / Faculty)
+- Student & Faculty login
+- Student portal: Dashboard, Profile, Assignments, Timetable, Exams, Attendance, Notes, Video, AI Assistant, Planner, Notifications, Gamification, Analytics, Settings
+- Faculty portal: Dashboard, Student Management, Assignments, Attendance, Exams & Analytics, Communication, AI Teaching Assistant, Settings
+- AI chat for students and faculty (OpenAI); demo replies when no API key
 
-1. Clone the repository  
-   `git clone <repo-link>`
+---
 
-2. Navigate to project folder  
-   `cd student-smart-hub`
-
-3. Create virtual environment  
-   `python -m venv venv`
-
-4. Activate venv  
-   **Windows:** `venv\Scripts\activate`
-
-5. Install dependencies  
-   `pip install -r requirements.txt`
-
-6. Create environment file  
-   Copy `.env.example` → `.env`  
-   Add your OpenAI API key
-
-7. Run the application  
-   `python app.py`
-
-8. Open in browser  
-   `http://127.0.0.1:5000`
-
-## Final Output
-- Centralized student dashboard
-- AI-powered academic assistance
-- Clean and user-friendly interface
-
-## Build Reproducibility
-This project can be fully reproduced using the above steps
-and the provided requirements.txt file.
+*Student Smart Hub is not just an LMS. It's a smart academic companion that centralizes learning, automates academic tracking, and uses AI to support both students and faculty in real time.*

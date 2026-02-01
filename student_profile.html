@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Profile - Student Smart Hub{% endblock %}
+{% block content %}
+<nav class="nav-portal">
+  <a href="{{ url_for('student_dashboard') }}">← Dashboard</a>
+  <button class="theme-toggle">🌙</button>
+  <a href="{{ url_for('student_logout') }}">Logout</a>
+</nav>
+<div class="container">
+  <h1 class="page-title text-gradient">Profile</h1>
+  <div class="glass-card profile-card">
+    <div class="profile-avatar">👤</div>
+    <div class="profile-info">
+      <p><strong>Name</strong> Alex Student</p>
+      <p><strong>Roll Number</strong> 2024001</p>
+      <p><strong>Department</strong> CSE</p>
+      <p><strong>Year / Semester</strong> 2nd Year · 3rd Sem</p>
+    </div>
+    <label class="btn-primary" style="cursor:pointer;">Upload Photo <input type="file" accept="image/*" hidden></label>
+    <button class="btn-primary mt-1">Edit Profile</button>
+  </div>
+</div>
+<style>
+.profile-card { padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+.profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.profile-info p { margin-bottom: 8px; }
+</style>
+{% endblock %}

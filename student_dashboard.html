@@ -1,0 +1,355 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard - Student Smart Hub{% endblock %}
+{% block content %}
+<nav class="nav-portal">
+  <a href="{{ url_for('student_dashboard') }}">Student Smart Hub</a>
+  <div class="nav-links flex gap-2 items-center" style="margin-left: auto;">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <a href="{{ url_for('student_logout') }}">Logout</a>
+  </div>
+</nav>
+
+<div class="portal-layout">
+  <aside class="sidebar glass-card">
+    <div class="sidebar-title">🎓 Student</div>
+    <nav class="sidebar-nav">
+      <a href="#" data-view="dashboard" class="active">🏠 Dashboard</a>
+      <a href="#" data-view="profile">👤 Profile</a>
+      <a href="#" data-view="assignments">📚 Assignments</a>
+      <a href="#" data-view="timetable">📅 Timetable</a>
+      <a href="#" data-view="exams">📊 Exams & Results</a>
+      <a href="#" data-view="attendance">🧾 Attendance</a>
+      <a href="#" data-view="notes">📖 Notes & Materials</a>
+      <a href="#" data-view="videos">🎬 Video Lectures</a>
+      <a href="#" data-view="ai">🤖 AI Assistant</a>
+      <a href="#" data-view="planner">📋 Smart Planner</a>
+      <a href="#" data-view="notifications">🔔 Notifications</a>
+      <a href="#" data-view="gamification">🎮 Badges & Points</a>
+      <a href="#" data-view="analytics">📈 Analytics</a>
+      <a href="#" data-view="settings">⚙️ Settings</a>
+    </nav>
+  </aside>
+
+  <main class="portal-main">
+    <!-- Dashboard -->
+    <section id="view-dashboard" class="view-panel active">
+      <h2 class="page-title text-gradient">Dashboard</h2>
+      <div class="dashboard-grid">
+        <div class="neo-card stat-card animate-fade-in-up">
+          <span class="stat-icon">📝</span>
+          <h3>Upcoming Assignments</h3>
+          <p class="stat-value">3</p>
+          <p class="stat-detail">DBMS, DSA, OOP</p>
+        </div>
+        <div class="neo-card stat-card animate-fade-in-up delay-1">
+          <span class="stat-icon">🕐</span>
+          <h3>Next Class</h3>
+          <p class="stat-value">DBMS</p>
+          <p class="stat-detail">10:00 AM · Room 301</p>
+        </div>
+        <div class="neo-card stat-card animate-fade-in-up delay-2">
+          <span class="stat-icon">✓</span>
+          <h3>Attendance %</h3>
+          <p class="stat-value">87%</p>
+          <p class="stat-detail">On track</p>
+        </div>
+        <div class="neo-card stat-card animate-fade-in-up delay-3">
+          <span class="stat-icon">⭐</span>
+          <h3>CGPA</h3>
+          <p class="stat-value">8.4</p>
+          <p class="stat-detail">Current semester</p>
+        </div>
+      </div>
+      <div class="glass-card mt-2" style="padding: 20px;">
+        <h3 class="mb-2">Notifications</h3>
+        <ul class="notif-list">
+          <li>Assignment due in 3 days — DBMS Normalization</li>
+          <li>New material uploaded — DSA Trees</li>
+          <li>Exam schedule published — Mid-sem</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Profile -->
+    <section id="view-profile" class="view-panel">
+      <h2 class="page-title text-gradient">Profile</h2>
+      <div class="glass-card profile-card">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-info">
+          <p><strong>Name</strong> Alex Student</p>
+          <p><strong>Roll Number</strong> 2024001</p>
+          <p><strong>Department</strong> CSE</p>
+          <p><strong>Year / Semester</strong> 2nd Year · 3rd Sem</p>
+        </div>
+        <div class="profile-actions">
+          <label class="btn-primary" style="cursor:pointer;display:inline-block;">Upload Photo <input type="file" accept="image/*" hidden></label>
+          <button class="btn-primary mt-1">Edit Profile</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Assignments -->
+    <section id="view-assignments" class="view-panel">
+      <h2 class="page-title text-gradient">Assignments</h2>
+      <div class="card-list">
+        <div class="glass-card assignment-item flex justify-between items-center">
+          <div>
+            <h4>DBMS — Normalization</h4>
+            <p class="text-secondary">Due: Feb 5, 2024</p>
+          </div>
+          <span class="badge badge-pending">Pending</span>
+          <button class="btn-primary btn-sm">Upload PDF</button>
+        </div>
+        <div class="glass-card assignment-item flex justify-between items-center">
+          <div>
+            <h4>DSA — Tree Traversal</h4>
+            <p class="text-secondary">Due: Feb 8, 2024</p>
+          </div>
+          <span class="badge badge-submitted">Submitted</span>
+        </div>
+        <div class="glass-card assignment-item flex justify-between items-center">
+          <div>
+            <h4>OOP — Inheritance</h4>
+            <p class="text-secondary">Due: Feb 1, 2024</p>
+          </div>
+          <span class="badge badge-late">Late</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timetable -->
+    <section id="view-timetable" class="view-panel">
+      <h2 class="page-title text-gradient">Timetable</h2>
+      <div class="timetable-tabs flex gap-2 mb-2">
+        <button class="tab-btn active">Daily</button>
+        <button class="tab-btn">Weekly</button>
+      </div>
+      <div class="glass-card overflow-auto">
+        <table class="timetable-table">
+          <thead>
+            <tr><th>Time</th><th>Subject</th><th>Faculty</th><th>Room / Link</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>9:00</td><td>DBMS</td><td>Dr. Smith</td><td>Room 301</td></tr>
+            <tr><td>10:00</td><td>DSA</td><td>Prof. Lee</td><td>Room 205</td></tr>
+            <tr><td>11:00</td><td>OOP</td><td>Dr. Kumar</td><td>Online</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Exams & Results -->
+    <section id="view-exams" class="view-panel">
+      <h2 class="page-title text-gradient">Exams & Results</h2>
+      <div class="dashboard-grid">
+        <div class="neo-card">
+          <h4>Exam Schedule</h4>
+          <p>Mid-sem: Mar 10–15</p>
+          <p>End-sem: May 20–25</p>
+        </div>
+        <div class="neo-card">
+          <h4>GPA</h4>
+          <p class="stat-value">8.2</p>
+        </div>
+        <div class="neo-card">
+          <h4>CGPA</h4>
+          <p class="stat-value">8.4</p>
+        </div>
+      </div>
+      <div class="glass-card mt-2" style="padding: 20px;">
+        <h4 class="mb-2">Marks by Subject</h4>
+        <ul>
+          <li>DBMS: 85 | DSA: 82 | OOP: 88</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Attendance -->
+    <section id="view-attendance" class="view-panel">
+      <h2 class="page-title text-gradient">Attendance Tracker</h2>
+      <div class="glass-card" style="padding: 20px;">
+        <p class="mb-2"><strong>Overall: 87%</strong></p>
+        <div class="attendance-bars">
+          <div class="att-row"><span>DBMS</span><div class="bar-wrap"><div class="bar fill" style="width:90%"></div></div><span>90%</span></div>
+          <div class="att-row"><span>DSA</span><div class="bar-wrap"><div class="bar fill" style="width:85%"></div></div><span>85%</span></div>
+          <div class="att-row"><span>OOP</span><div class="bar-wrap"><div class="bar fill low" style="width:72%"></div></div><span>72% ⚠</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes & Materials -->
+    <section id="view-notes" class="view-panel">
+      <h2 class="page-title text-gradient">Notes & Materials</h2>
+      <div class="card-list">
+        <div class="glass-card folder-item">
+          <span>📁</span> DBMS — Normalization.pdf, Slides.pptx
+        </div>
+        <div class="glass-card folder-item">
+          <span>📁</span> DSA — Trees.pdf
+        </div>
+        <div class="glass-card folder-item">
+          <span>📁</span> OOP — Inheritance.pdf
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Lectures -->
+    <section id="view-videos" class="view-panel">
+      <h2 class="page-title text-gradient">Video Lectures</h2>
+      <div class="glass-card video-card">
+        <div class="video-placeholder">
+          <p>▶ Video Player</p>
+          <p class="small">DBMS — Normalization (Watch progress: 45%)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Assistant -->
+    <section id="view-ai" class="view-panel">
+      <h2 class="page-title text-gradient">AI Personal Assistant</h2>
+      <div class="glass-card chat-container">
+        <div id="ai-chat-messages" class="chat-messages">
+          <div class="chat-msg bot">Hi! I'm your academic assistant. Ask me about assignments, concepts like DBMS normalization, or study tips.</div>
+        </div>
+        <form id="ai-chat-form" class="chat-form">
+          <input type="text" id="ai-chat-input" placeholder="e.g. What assignments are pending? or Explain DBMS normalization" autocomplete="off">
+          <button type="submit" class="btn-primary">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Smart Planner -->
+    <section id="view-planner" class="view-panel">
+      <h2 class="page-title text-gradient">Smart Academic Planner</h2>
+      <div class="glass-card">
+        <ul class="planner-list">
+          <li>📌 Assignment reminder — DBMS due in 3 days</li>
+          <li>📌 Exam alert — Mid-sem Mar 10</li>
+          <li>📌 Priority: Complete Normalization assignment</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Notifications -->
+    <section id="view-notifications" class="view-panel">
+      <h2 class="page-title text-gradient">Notifications</h2>
+      <div class="card-list">
+        <div class="glass-card notif-item">Assignment deadline — 3 days</div>
+        <div class="glass-card notif-item">New material — DSA Trees</div>
+        <div class="glass-card notif-item">College announcement — Holiday</div>
+      </div>
+    </section>
+
+    <!-- Gamification -->
+    <section id="view-gamification" class="view-panel">
+      <h2 class="page-title text-gradient">Badges & Points</h2>
+      <div class="dashboard-grid">
+        <div class="neo-card"><h4>Points</h4><p class="stat-value">1250</p></div>
+        <div class="neo-card"><h4>Badges</h4><p>🏆 Early Bird · 📚 Reader · ⭐ Star</p></div>
+      </div>
+    </section>
+
+    <!-- Analytics -->
+    <section id="view-analytics" class="view-panel">
+      <h2 class="page-title text-gradient">Analytics</h2>
+      <div class="glass-card">
+        <h4>Performance trend</h4>
+        <div class="chart-placeholder">📈 Chart: Attendance vs CGPA</div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section id="view-settings" class="view-panel">
+      <h2 class="page-title text-gradient">Settings</h2>
+      <div class="glass-card">
+        <p><strong>Profile</strong> — Edit in Profile tab</p>
+        <p><strong>Notifications</strong> — Email & in-app</p>
+        <p><strong>Theme</strong> — <button class="theme-toggle">Dark / Light</button></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+.portal-layout { display: flex; min-height: calc(100vh - 56px); }
+.sidebar { width: 240px; min-width: 240px; padding: 20px; border-radius: 0; border-left: none; border-top: none; }
+.sidebar-title { font-weight: 700; margin-bottom: 16px; }
+.sidebar-nav a { display: block; padding: 10px 12px; margin-bottom: 4px; border-radius: var(--radius-sm); color: var(--text-secondary); text-decoration: none; transition: all var(--transition); }
+.sidebar-nav a:hover, .sidebar-nav a.active { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+.portal-main { flex: 1; padding: 24px; overflow-y: auto; }
+.view-panel { display: none; }
+.view-panel.active { display: block; animation: fadeIn 0.3s ease; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.stat-card { padding: 24px; text-align: center; }
+.stat-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent-teal); }
+.stat-detail, .text-secondary { color: var(--text-secondary); font-size: 0.9rem; }
+.notif-list { list-style: none; }
+.notif-list li { padding: 8px 0; border-bottom: 1px solid var(--border-glass); }
+.profile-card { padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+.profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.profile-info p { margin-bottom: 8px; }
+.card-list { display: flex; flex-direction: column; gap: 12px; }
+.assignment-item { padding: 16px; }
+.badge { margin-left: auto; margin-right: 12px; }
+.btn-sm { padding: 8px 16px; font-size: 0.875rem; }
+.timetable-table { width: 100%; border-collapse: collapse; }
+.timetable-table th, .timetable-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-glass); }
+.tab-btn { padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: var(--bg-glass); color: var(--text-primary); cursor: pointer; }
+.tab-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); }
+.attendance-bars { display: flex; flex-direction: column; gap: 12px; }
+.att-row { display: grid; grid-template-columns: 80px 1fr 50px; align-items: center; gap: 12px; }
+.bar-wrap { height: 8px; background: var(--bg-glass); border-radius: 4px; overflow: hidden; }
+.bar.fill { height: 100%; background: var(--accent-teal); border-radius: 4px; transition: width 0.5s ease; }
+.bar.fill.low { background: #ef4444; }
+.folder-item { padding: 16px; display: flex; align-items: center; gap: 12px; }
+.video-placeholder { aspect-ratio: 16/9; background: var(--bg-secondary); border-radius: var(--radius-sm); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-secondary); }
+.chat-container { padding: 0; display: flex; flex-direction: column; max-height: 500px; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 20px; min-height: 300px; }
+.chat-msg { padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 12px; max-width: 85%; }
+.chat-msg.bot { background: var(--bg-glass); align-self: flex-start; }
+.chat-msg.user { background: var(--gradient-main); color: white; align-self: flex-end; margin-left: auto; }
+.chat-form { display: flex; gap: 12px; padding: 16px; border-top: 1px solid var(--border-glass); }
+.chat-form input { flex: 1; padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: var(--bg-glass); color: var(--text-primary); }
+.planner-list, .notif-list { list-style: none; }
+.planner-list li, .notif-item { padding: 12px; margin-bottom: 8px; }
+.chart-placeholder { padding: 40px; text-align: center; color: var(--text-secondary); background: var(--bg-glass); border-radius: var(--radius-sm); margin-top: 12px; }
+.overflow-auto { overflow: auto; }
+.small { font-size: 0.85rem; }
+@media (max-width: 768px) { .portal-layout { flex-direction: column; } .sidebar { width: 100%; } .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; } .sidebar-nav a { margin-bottom: 0; } }
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>
+(function() {
+  var form = document.getElementById('ai-chat-form');
+  var input = document.getElementById('ai-chat-input');
+  var messages = document.getElementById('ai-chat-messages');
+  if (!form || !input || !messages) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    var userDiv = document.createElement('div');
+    userDiv.className = 'chat-msg user';
+    userDiv.textContent = text;
+    messages.appendChild(userDiv);
+    messages.scrollTop = messages.scrollHeight;
+    var botDiv = document.createElement('div');
+    botDiv.className = 'chat-msg bot';
+    botDiv.textContent = 'Thinking...';
+    messages.appendChild(botDiv);
+    messages.scrollTop = messages.scrollHeight;
+    try {
+      var r = await fetch('/api/ai/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, role: 'student' }) });
+      var j = await r.json();
+      botDiv.textContent = j.reply || 'No response.';
+    } catch (err) {
+      botDiv.textContent = 'Network error. Try again.';
+    }
+    messages.scrollTop = messages.scrollHeight;
+  });
+})();
+</script>
+{% endblock %}

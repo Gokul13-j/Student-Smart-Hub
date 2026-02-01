@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Faculty Login - Student Smart Hub{% endblock %}
+{% block content %}
+<div class="auth-page">
+  <a href="{{ url_for('index') }}" class="back-link">← Back</a>
+  <div class="auth-card glass-card animate-fade-in-up">
+    <div class="auth-header">
+      <span class="auth-icon">🧑‍🏫</span>
+      <h1>Faculty Login</h1>
+      <p>Faculty ID / Email & Password</p>
+    </div>
+    <form id="faculty-login-form" class="auth-form">
+      <div class="input-group">
+        <label>Faculty ID / Email</label>
+        <input type="text" name="email" placeholder="e.g. F001 or faculty@hub.com" required>
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-primary ripple btn-full">Secure Login</button>
+      <p id="login-error" class="error-msg"></p>
+    </form>
+  </div>
+  <p class="auth-hint">Demo: faculty@hub.com / F001 — password: faculty123</p>
+</div>
+<style>
+.auth-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; position: relative; }
+.back-link { position: absolute; top: 24px; left: 24px; color: var(--text-secondary); text-decoration: none; }
+.auth-card { width: 100%; max-width: 420px; padding: 40px; }
+.auth-header { text-align: center; margin-bottom: 28px; }
+.auth-icon { font-size: 3rem; display: block; margin-bottom: 12px; }
+.auth-header h1 { font-size: 1.75rem; margin-bottom: 4px; }
+.auth-header p { color: var(--text-secondary); font-size: 0.9rem; }
+.auth-form .btn-full { width: 100%; margin-top: 8px; }
+.error-msg { color: #ef4444; font-size: 0.875rem; margin-top: 12px; text-align: center; }
+.auth-hint { margin-top: 20px; font-size: 0.8rem; color: var(--text-secondary); }
+</style>
+{% endblock %}
+{% block extra_js %}
+<script>
+document.getElementById('faculty-login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const err = document.getElementById('login-error');
+  err.textContent = '';
+  const data = { email: form.email.value.trim(), password: form.password.value };
+  try {
+    const r = await fetch('{{ url_for("faculty_login") }}', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    const j = await r.json();
+    if (j.success) window.location.href = j.redirect || '{{ url_for("faculty_dashboard") }}';
+    else err.textContent = j.message || 'Invalid credentials';
+  } catch (x) { err.textContent = 'Network error'; }
+});
+</script>
+{% endblock %}
