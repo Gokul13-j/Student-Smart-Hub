@@ -1,0 +1,4 @@
+- problem statment of student portal and teacher portal
+- Generate UI ideas for a student portal
+- Debug Flask backend and routing issues
+-guide prompt templates for academic assistance
